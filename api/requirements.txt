@@ -1,0 +1,7 @@
+fastapi
+fastapi[standard]
+uvicorn
+pandas
+autogluon.common==0.8.3
+autogluon.core==0.8.3
+autogluon.features==0.8.3

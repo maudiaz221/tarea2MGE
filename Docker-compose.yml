@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./api
+    ports:
+      - "8000:8000"
+    working_dir: /app/back  # Ensures backend runs from /app/back
+    volumes:
+      - ./AutogluonModels:/app/AutogluonModels  # Mounts the model directory
+
+
+  frontend:
+    build:
+      context: ./front/t2  # Contains the frontend Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    working_dir: /app/front  # Ensures Next.js runs from /app/front
+    environment:
+      - BACKEND_URL=http://backend:8000  # Ensures correct backend URL
+
+
